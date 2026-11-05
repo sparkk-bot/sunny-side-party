@@ -102,6 +102,56 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
 @media(max-width:780px){.orbit-grid{grid-template-columns:1fr;gap:0}.values-stage{padding:74px 0}.values-heading{margin-bottom:25px}.value-orbit{min-height:285px}.value-orbit .orbit-ring{width:263px;height:263px}.history{padding:62px 0}.history-inner{grid-template-columns:1fr;gap:31px}.history-year{font-size:110px}.vote-dialog{grid-template-columns:1fr;max-width:550px}.vote-art{min-height:175px;height:175px}.ballot-art{width:260px;height:175px}.vote-copy{padding:26px 30px 32px}.vote-copy h2{font-size:44px;margin:10px 0}.vote-copy p{font-size:13px;margin-bottom:16px}.vote-fineprint{margin-top:12px}.vote-art-label{bottom:9px;font-size:9px}.float-backtop{right:15px;bottom:15px}}
 @media(max-width:500px){.direction-grid{grid-template-columns:1fr}.direction-card{min-height:0}.vote-copy{padding:22px 24px 26px}.vote-art{height:145px;min-height:145px}.ballot-art{height:145px}.vote-copy h2{font-size:40px}.vote-action{font-size:10px}.history-year{font-size:91px}}
 @media(prefers-reduced-motion:reduce){.ballot-art{animation:none!important}.js-ready .reveal,.js-ready .value-orbit.reveal{opacity:1!important;transform:none!important}.js-ready .budget-fill{transform:none!important}.vote-dialog,.vote-modal{transition:none!important}.float-backtop{transition:none!important}}
+
+/* ——— Interactive golden-hour sunrise ——— */
+.sunrise{position:relative;height:173vh;min-height:1050px;background:#152d44;isolation:isolate}
+.sunrise-stage{--sun-y:160px;--sun-scale:.72;--daylight:0;--sun-phase:0;position:sticky;top:0;min-height:650px;height:100vh;overflow:hidden;background:linear-gradient(180deg,#f4ce83 0%,#ffe5b0 45%,#fff6dd 100%);display:flex;align-items:center;justify-content:center}
+.sunrise-night{position:absolute;inset:0;background:linear-gradient(180deg,#0a2238 0%,#173b56 58%,#ae724c 100%);opacity:calc(1 - var(--daylight));will-change:opacity}
+.sunrise-stars{position:absolute;inset:0;opacity:calc(1 - var(--daylight));background-image:radial-gradient(circle at 12% 17%,#fff5dd 1px,transparent 2px),radial-gradient(circle at 78% 20%,#fff5dd 1px,transparent 2px),radial-gradient(circle at 44% 39%,#ffe6ad 1.3px,transparent 2px),radial-gradient(circle at 69% 10%,#fff3d3 1px,transparent 2px);pointer-events:none}
+.sunrise-glow{position:absolute;left:50%;bottom:12%;width:85vw;height:70vw;max-width:1100px;max-height:920px;border-radius:50%;transform:translateX(-50%) scale(calc(.65 + .35 * var(--sun-phase)));background:radial-gradient(circle,#ffc76e83 0%,#ffe5a84b 30%,transparent 69%);filter:blur(10px);opacity:var(--daylight);pointer-events:none}
+.sunrise-sun{position:absolute;left:50%;bottom:16%;height:clamp(270px,34vw,510px);width:clamp(270px,34vw,510px);transform:translate(-50%,var(--sun-y)) scale(var(--sun-scale));border-radius:50%;background:radial-gradient(circle at 40% 32%,#fff5c1 0%,#ffe1a0 37%,#ffc66b 75%,#f6b351 100%);box-shadow:0 0 40px #ffd07a88,0 0 115px #ffd88c55,0 0 220px #ffc67234;will-change:transform;z-index:1}
+.sunrise-sun-inner{position:absolute;inset:-16%;border:1px solid #ffefb288;border-radius:50%;box-shadow:0 0 0 26px #ffdda420,0 0 0 70px #ffe6be16;animation:sunbreath 6s ease-in-out infinite alternate}
+@keyframes sunbreath{from{opacity:.65;transform:scale(.98)}to{opacity:1;transform:scale(1.03)}}
+.sunrise-ridge{position:absolute;bottom:-1px;left:-10%;width:120%;height:35%;z-index:2;clip-path:polygon(0 75%,10% 60%,25% 79%,38% 63%,51% 85%,70% 58%,87% 75%,100% 50%,100% 100%,0 100%)}
+.sunrise-ridge-back{background:#d1a878a0;transform:translateY(15%);filter:blur(5px)}
+.sunrise-ridge-front{height:22%;background:linear-gradient(180deg,#22394c 0%,#172b3d 100%);clip-path:polygon(0 80%,16% 54%,29% 75%,52% 48%,69% 73%,83% 54%,100% 76%,100% 100%,0 100%)}
+.sunrise-stage-text{position:relative;z-index:4;text-align:center;max-width:900px;margin:auto;padding:0 24px 8vh;color:#fff;transition:color .35s ease;text-shadow:0 3px 14px #0c273b55}
+.sunrise-stage.day .sunrise-stage-text{color:#132c43;text-shadow:none}
+.sunrise-eyebrow{font-size:11px;font-weight:800;letter-spacing:.3em;display:block;margin-bottom:16px}
+.sunrise-stage-text h2{font:900 clamp(50px,9vw,126px)/.88 Outfit,'Arial Black',sans-serif;letter-spacing:-.08em;color:inherit;margin:0 0 18px;text-transform:uppercase}
+.sunrise-stage-text h2 em{font-style:normal;color:#ffc770;transition:color .3s}
+.sunrise-stage.day .sunrise-stage-text h2 em{color:#c7892e}
+.sunrise-stage-text p{font-size:clamp(15px,1.6vw,20px);font-weight:600;margin:0}
+.sunrise-scroll{display:block;margin-top:36px;font-size:10px;letter-spacing:.2em;font-weight:800;opacity:.9}
+.sunrise-progress{position:absolute;right:30px;top:50%;transform:translateY(-50%);height:130px;width:3px;border-radius:4px;z-index:5;background:#ffffff80}
+.sunrise-progress span{display:block;width:100%;height:calc(var(--sun-phase) * 100%);background:#dd9635;border-radius:4px}
+/* ——— Member enrollment dialog ——— */
+.member-modal[hidden]{display:none!important}.member-modal{position:fixed;inset:0;z-index:950;display:grid;place-items:center;padding:20px;opacity:0;transition:opacity .25s ease}
+.member-modal.show{opacity:1}.member-scrim{position:absolute;inset:0;background:rgba(7,24,40,.78);backdrop-filter:blur(8px)}
+.member-dialog{position:relative;z-index:2;display:grid;grid-template-columns:.88fr 1fr;width:min(870px,calc(100vw - 28px));max-height:min(92vh,870px);overflow:auto;background:#faf8f2;box-shadow:0 30px 90px #06172777;transform:translateY(24px) scale(.98);transition:transform .3s ease}
+.member-modal.show .member-dialog{transform:translateY(0) scale(1)}
+.member-close{position:absolute;right:12px;top:12px;border:1px solid #c7d0d6;background:#fff;color:#1a344a;font-size:28px;line-height:1;width:39px;height:39px;z-index:3;cursor:pointer}
+.member-art{background:radial-gradient(circle at 72% 15%,#466a7e,#132b40 68%);position:relative;overflow:hidden;color:#fff;padding:50px 35px;min-height:470px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between}
+.member-art strong{position:relative;z-index:2;font:900 clamp(32px,4vw,54px)/.95 Outfit,sans-serif;letter-spacing:-.055em}.member-art-label,.member-art small{font-size:10px;font-weight:800;letter-spacing:.15em;position:relative;z-index:2;color:#f6d28c}
+.member-horizon{position:absolute;inset:0;overflow:hidden;pointer-events:none}.member-horizon::after{content:'';position:absolute;bottom:0;width:130%;left:-15%;height:27%;background:linear-gradient(160deg,#1b364c,#0c2035);clip-path:polygon(0 50%,33% 15%,50% 58%,70% 11%,100% 57%,100% 100%,0 100%)}
+.member-horizon-sun{position:absolute;width:340px;height:340px;border-radius:50%;left:50%;bottom:10%;transform:translateX(-50%);background:radial-gradient(circle at 35% 30%,#ffefa9,#f8b449);box-shadow:0 0 110px #ffcf7966}
+.member-content{padding:45px 40px 30px}.member-content h2{font:900 clamp(34px,3vw,49px)/1.03 Outfit,sans-serif;margin:16px 0 14px;letter-spacing:-.04em}.member-content>p{font-size:13px;color:#5e7280;margin:0 0 16px;line-height:1.7}
+#member-form{display:flex;flex-direction:column;gap:9px}#member-form>label:not(.member-consent){font-size:12px;font-weight:800;color:#20374b}
+#member-form>input{width:100%;height:44px;border:1px solid #cbd5dc;border-radius:2px;background:#fff;padding:10px 13px;color:#142b42;font-size:14px;outline-offset:2px}
+.member-consent{display:flex;align-items:flex-start;gap:10px;margin:9px 0;font-size:12px;color:#4a6070;line-height:1.5;cursor:pointer}.member-consent input{width:16px;height:16px;margin-top:1px;accent-color:#142b42;flex-shrink:0}
+.member-submit{width:100%;margin-top:5px}.member-status{margin-top:11px!important;font-weight:700;color:#365979!important;font-size:12px!important;min-height:17px}.member-privacy{font-size:11px!important}.member-privacy a{text-decoration:underline}.member-trap{position:absolute!important;left:-10000px!important;opacity:0;pointer-events:none}
+/* ——— Extra polish and subtle motion ——— */
+.header{box-shadow:0 4px 35px #10263b0b}
+.person:hover .portrait{transform:scale(1.065)}
+.direction-card{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.direction-card:hover{transform:translateY(-8px);box-shadow:0 23px 44px #10263b1a;border-color:#e4be78}
+.policy-card{transition:transform .25s ease,box-shadow .25s ease}.policy-card:hover{transform:translateY(-3px)}
+.cta{position:relative;overflow:hidden}.cta::after{content:'';position:absolute;right:-130px;top:-180px;width:420px;height:420px;border:3px solid #fff5d34d;border-radius:50%;pointer-events:none;box-shadow:0 0 0 60px #fff5d319,0 0 0 120px #fff5d30c}
+#join-button{position:relative;z-index:1}
+@media(max-width:780px){.sunrise{height:142vh;min-height:800px}.sunrise-stage{min-height:600px}.sunrise-stage-text h2{font-size:clamp(54px,13vw,85px)}.sunrise-progress{right:15px}.member-dialog{grid-template-columns:1fr;width:min(550px,calc(100vw - 20px))}.member-art{min-height:150px;height:155px;padding:18px 24px;overflow:hidden}.member-art strong{font-size:25px}.member-horizon-sun{width:200px;height:200px;left:83%;bottom:-90px}.member-art small{display:none}.member-content{padding:27px 23px 24px}.member-content h2{font-size:37px}}
+@media(max-width:430px){.sunrise-stage-text h2{font-size:47px}.sunrise-stage-text p{font-size:14px}.sunrise-scroll{font-size:8px}.member-art{height:118px;min-height:118px}.member-art strong{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.sunrise{height:auto!important;min-height:0!important}.sunrise-stage{height:520px;min-height:0!important;position:relative;--sun-y:-150px;--sun-scale:1;--daylight:1;--sun-phase:1}.sunrise-night,.sunrise-stars{opacity:0}.sunrise-stage-text{color:#142b42;text-shadow:none}.sunrise-stage-text h2 em{color:#bd8030}.sunrise-scroll{display:none}.sunrise-sun-inner{animation:none}.member-dialog,.member-modal{transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -154,6 +204,25 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
 </section>
 
 
+
+<!-- INTERACTIVE SUNRISE: scroll down to watch the sun rise; scroll up to rewind. -->
+<section class="sunrise" id="sunrise" aria-label="A brighter future begins with our choices">
+  <div class="sunrise-stage">
+    <div class="sunrise-night" aria-hidden="true"></div>
+    <div class="sunrise-stars" aria-hidden="true"></div>
+    <div class="sunrise-glow" aria-hidden="true"></div>
+    <div class="sunrise-sun" aria-hidden="true"><div class="sunrise-sun-inner"></div></div>
+    <div class="sunrise-ridge sunrise-ridge-back" aria-hidden="true"></div>
+    <div class="sunrise-ridge sunrise-ridge-front" aria-hidden="true"></div>
+    <div class="sunrise-stage-text">
+      <span class="sunrise-eyebrow">A NEW DAY · THE SUNNY SIDE PARTY</span>
+      <h2>BRIGHTER<br><em>TOGETHER.</em></h2>
+      <p>Tomorrow begins with the choices we make today.</p>
+      <span class="sunrise-scroll" aria-hidden="true">SCROLL TO SEE THE SUN RISE ↓</span>
+    </div>
+    <div class="sunrise-progress" aria-hidden="true"><span></span></div>
+  </div>
+</section>
 <section aria-labelledby="history-title" class="history" id="history">
 <div class="container history-inner">
 <div aria-label="Founded in 1967" class="history-year reveal">19<span>67</span></div>
@@ -278,6 +347,37 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
 </div>
 <a aria-label="Back to top" class="float-backtop" href="#top" id="floating-backtop" title="Back to top">↑<span>Top</span></a>
 
+
+<!-- MEMBERSHIP: form automatically opens when "Become a Member" is clicked. -->
+<div class="member-modal" id="member-modal" role="presentation" hidden>
+  <div class="member-scrim" id="member-scrim"></div>
+  <section class="member-dialog" role="dialog" aria-modal="true" aria-labelledby="member-title" aria-describedby="member-intro">
+    <button class="member-close" type="button" id="member-close" aria-label="Close membership form">×</button>
+    <div class="member-art" aria-hidden="true">
+      <div class="member-horizon"><div class="member-horizon-sun"></div></div>
+      <span class="member-art-label">YOUR VOICE MATTERS</span>
+      <strong>THE FUTURE<br>IS BRIGHTER<br>WITH YOU.</strong>
+      <small>SUNNY SIDE PARTY · 1967</small>
+    </div>
+    <div class="member-content">
+      <span class="eyebrow">BE PART OF THE SUNNY SIDE</span>
+      <h2 id="member-title">Become a member.</h2>
+      <p id="member-intro">Leave your name and email to request membership. We'll use them only to follow up about the party.</p>
+      <form id="member-form" novalidate>
+        <label for="member-name">Your name</label>
+        <input type="text" id="member-name" name="name" maxlength="80" autocomplete="name" placeholder="Full name" required>
+        <label for="member-email">Email address</label>
+        <input type="email" id="member-email" name="email" maxlength="254" autocomplete="email" placeholder="you@example.com" required>
+        <label class="member-consent" for="member-consent"><input type="checkbox" id="member-consent" name="consent" value="yes" required><span>I agree to share my name and email for this membership inquiry and follow-up contact.</span></label>
+        <div class="member-trap" aria-hidden="true"><label for="member-website">Leave blank</label><input tabindex="-1" autocomplete="off" id="member-website" name="website" type="text"></div>
+        <button type="submit" class="button primary member-submit" id="member-submit">Request membership <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="member-status" id="member-status" aria-live="polite"></p>
+      <p class="member-privacy">Questions? <a href="mailto:sunnysideparty@bhcs.co.kr">sunnysideparty@bhcs.co.kr</a></p>
+    </div>
+  </section>
+</div>
+
 <script>
 (() => {
   'use strict';
@@ -333,11 +433,7 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
   });
 
   const join=root.getElementById('join-button');
-  if(join)join.addEventListener('click',()=>{
-    const toast=root.getElementById('toast');toast.classList.add('visible');
-    window.clearTimeout(window.__sunnyToastTimer);
-    window.__sunnyToastTimer=window.setTimeout(()=>toast.classList.remove('visible'),3200);
-  });
+  if(join)join.addEventListener('click',()=>window.openSunnyMemberModal?.());
 
   // A dismissible campaign pop-up, once per page load, never requiring login.
   const modal=root.getElementById('vote-modal');
@@ -407,6 +503,78 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
     window.scrollTo({top:0,behavior:smooth});
   }
   root.querySelectorAll('.backtop-link,.float-backtop').forEach(a=>a.addEventListener('click',goToTop));
+})();
+</script>
+<script>
+(() => {
+  'use strict';
+  // CONNECTING GOOGLE SHEETS:
+  // Paste the deployed Google Apps Script Web App URL below (ending in /exec).
+  // Until connected, the form opens the user's email application instead.
+  const MEMBERSHIP_SCRIPT_URL = '';
+  const memberModal=document.getElementById('member-modal');
+  const memberForm=document.getElementById('member-form');
+  const memberStatus=document.getElementById('member-status');
+  const memberClose=document.getElementById('member-close');
+  let lastFocused=null;
+  function closeMember(){
+    memberModal.classList.remove('show');
+    window.setTimeout(()=>{memberModal.hidden=true;lastFocused?.focus?.();},220);
+  }
+  window.openSunnyMemberModal=()=>{
+    lastFocused=document.activeElement;
+    memberStatus.textContent='';
+    memberModal.hidden=false;
+    requestAnimationFrame(()=>{memberModal.classList.add('show');document.getElementById('member-name').focus({preventScroll:true});});
+  };
+  memberClose.addEventListener('click',closeMember);
+  document.getElementById('member-scrim').addEventListener('click',closeMember);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!memberModal.hidden)closeMember();});
+  memberForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!memberForm.reportValidity())return;
+    if(document.getElementById('member-website').value) return;
+    const name=document.getElementById('member-name').value.trim();
+    const email=document.getElementById('member-email').value.trim();
+    if(!name||!email)return;
+    if(MEMBERSHIP_SCRIPT_URL.startsWith('https://script.google.com/macros/s/') && MEMBERSHIP_SCRIPT_URL.endsWith('/exec')) {
+      // A standard POST in a NEW TAB avoids Apps Script cross-origin fetch restrictions.
+      // The response page confirms whether Google Sheets actually recorded the request.
+      memberForm.action=MEMBERSHIP_SCRIPT_URL;
+      memberForm.method='POST';
+      memberForm.target='_blank';
+      memberStatus.textContent='A confirmation tab will open. Check that tab to verify your request was received.';
+      HTMLFormElement.prototype.submit.call(memberForm);
+    } else {
+      // No backend configured yet: compose an email instead of pretending data was stored.
+      const subject='Sunny Side Party - Membership Inquiry';
+      const body=`Name: ${name}\nEmail: ${email}\n\nI would like to request Sunny Side Party membership.`;
+      window.location.href='mailto:sunnysideparty@bhcs.co.kr?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      memberStatus.textContent='Your email application should open. Please press Send there to complete your request. Google Sheets is not connected yet.';
+    }
+  });
+
+  // Sunrise progress based on scroll position; moving upward reverses the motion.
+  const section=document.getElementById('sunrise');
+  const stage=section?.querySelector('.sunrise-stage');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let pending=false;
+  function animateSunrise(){
+    pending=false;
+    if(!section||!stage||reduceMotion)return;
+    const rect=section.getBoundingClientRect();
+    const scrollLength=Math.max(1,section.offsetHeight-window.innerHeight);
+    const p=Math.min(1,Math.max(0,-rect.top/scrollLength));
+    const eased=p*p*(3-2*p);
+    stage.style.setProperty('--sun-phase',eased.toFixed(4));
+    stage.style.setProperty('--daylight',Math.min(1,eased*1.25).toFixed(4));
+    stage.style.setProperty('--sun-y',(170 - 390*eased).toFixed(2)+'px');
+    stage.style.setProperty('--sun-scale',(.75 + .32*eased).toFixed(3));
+    stage.classList.toggle('day',p>.38);
+  }
+  window.addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(animateSunrise)}},{passive:true});
+  window.addEventListener('resize',animateSunrise);
+  animateSunrise();
 })();
 </script>
 </body>
