@@ -168,11 +168,30 @@ body.vote-open{overflow:hidden}.contact-block{margin-top:27px}.contact-link{font
 <p class="values-large"><span>Freedom.</span><span><i>Opportunity.</i></span><span>Responsibility.</span></p>
 <div class="hero-actions"><a class="button primary" href="#platform">Our policies <span aria-hidden="true">→</span></a><a class="button outline" href="#leadership">Meet the team</a></div>
 <p class="hero-heritage">A history of looking forward. <b>Since 1967.</b></p></div><div class="video-col reveal">
-<div class="video-shell" id="campaign-video-shell">
-<div class="video-surface" id="video-placeholder"><span class="film-tag">SUNNY SIDE PARTY PRESENTS</span><span class="film-title">A Brighter<br/>Tomorrow.</span><span aria-hidden="true" class="play-visual">▶</span><span class="film-meta">OFFICIAL CAMPAIGN FILM · 60 SEC</span></div>
-<video aria-label="Sunny Side Party sixty-second campaign advertisement" controls="" id="campaign-video" playsinline="" preload="metadata"></video>
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" id="youtube-video" referrerpolicy="strict-origin-when-cross-origin" title="Sunny Side Party campaign advertisement"></iframe>
+
+<div class="video-shell has-embed" id="campaign-video-shell">
+
+  <div class="video-surface"
+       id="video-placeholder"
+       style="display:none"></div>
+
+  <video id="campaign-video"
+         controls
+         playsinline
+         preload="metadata"></video>
+
+  <iframe
+    id="youtube-video"
+    class="is-active"
+    src="https://www.youtube.com/embed/SxwIT0YUBD4"
+    title="Sunny Side Party Campaign Video"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+
 </div>
+
 <div class="video-actions"><span class="video-label">OUR 60-SECOND PARTY AD</span><label class="video-upload" for="local-video-picker">＋ Preview your video<input accept="video/mp4,video/webm,video/quicktime" id="local-video-picker" type="file"/></label></div>
 <p class="video-help">To publish the video, set VIDEO_URL in the HTML or place party-ad.mp4 beside this file. Local previews are not uploaded.</p>
 </div></div></section>
@@ -414,7 +433,7 @@ const VIDEO_URL = 'https://youtu.be/SxwIT0YUBD4';
   }
   function showYouTube(id){
     video.pause();video.removeAttribute('src');video.classList.remove('is-active');
-    yt.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?rel=0';yt.classList.add('is-active');
+yt.src='https://www.youtube.com/embed/'+encodeURIComponent(id)+'?rel=0';
     shell.classList.add('has-embed');shell.classList.remove('has-video');placeholder.style.display='none';
   }
   const ytId=VIDEO_URL.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/);
